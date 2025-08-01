@@ -2,6 +2,10 @@
 
 A simple **MERN** stack application that serves a menu of dishes, allows user registration/login, manages a shopping cart, and processes orders. This repository includes the complete source code, a Postman collection for testing, and screenshots demonstrating each endpoint.
 
+## Quick demo of the solution
+
+https://www.loom.com/share/5ca5af1ed3a94768a2ddcaeb265dd58d?sid=38e3bdf8-2127-4d51-b763-a9610db81432
+
 ---
 
 ## 📝 Table of Contents
