@@ -119,38 +119,45 @@ A Postman collection is included for easy API testing.
 
 ---
 
-## 📸 Postman Screenshots
+## 📸 Postman collection Screenshots
 
-Below are examples of requests and responses captured directly from Postman.
+Below are examples of requests and responses captured during testing directly from Postman.
 
-### Register User
+### Register User (Returns 401 Unauthorized if the user already exists)
 
-![Register](./postman-screenshots/register.png)
+<img width="1600" height="1000" alt="image" src="https://github.com/user-attachments/assets/3faf0673-2935-48cf-837c-f516ebf6beaa" />
 
-### Login User
 
-![Login](./postman-screenshots/login.png)
 
-### Food List
+### Login User (Returns 401 Unauthorized if credentials are incorrect)
 
-![Food List](./postman-screenshots/food-list.png)
+<img width="1600" height="1000" alt="image" src="https://github.com/user-attachments/assets/75ab81f4-8b40-4bb8-ad79-928277f918df" />
 
-### Get My Cart
 
-![Get My Cart](./postman-screenshots/get-cart.png)
+
+### Food List 
+
+<img width="1600" height="1000" alt="image" src="https://github.com/user-attachments/assets/74181a19-55a6-49ca-867e-73143efdbbd8" />
+
+
+
+### Get Cart
+
+<img width="1600" height="1000" alt="image" src="https://github.com/user-attachments/assets/0672b7e7-129a-4927-8be9-3ded77f6a1f8" />
+
 
 ### Add to Cart
 
-![Add to Cart](./postman-screenshots/add-cart.png)
+<img width="1600" height="1000" alt="image" src="https://github.com/user-attachments/assets/11ec437d-2fb0-4ea0-bc23-f10ebf3e969a" />
+
 
 ### Remove from Cart
 
-![Remove from Cart](./postman-screenshots/remove-cart.png)
+<img width="1600" height="1000" alt="image" src="https://github.com/user-attachments/assets/6997538b-7e48-4143-96ad-d6163b21f079" />
 
-### Create Order
 
-![Create Order](./postman-screenshots/create-order.png)
+### User Orders
 
-### Get Order by ID
+<img width="1600" height="1000" alt="image" src="https://github.com/user-attachments/assets/01a36079-bee9-4b06-bb62-773853e28c54" />
 
-![Get Order](./postman-screenshots/get-order.png)
+
