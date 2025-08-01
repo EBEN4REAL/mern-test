@@ -1,0 +1,269 @@
+{
+	"info": {
+		"_postman_id": "72220b9e-19c7-40ee-b448-b53702dbe73e",
+		"name": "Food App API",
+		"description": "This collection contains the endpoints for the fullstack labs test app food api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14430253"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status 200\", () => pm.response.to.have.status(200));",
+									"const data = pm.response.json();",
+									"pm.test(\"Token returned\", () => pm.expect(data.token).to.be.a(\"string\"));",
+									"pm.environment.set(\"token\", data.token);",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"{{email}}\",\n  \"password\": \"{{password}}\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/user/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"login"
+							]
+						},
+						"description": "Authenticates an existing user and returns a JWT.\n\n- **Body (JSON)**\n    \n    - `email` (string)\n        \n    - `password` (string)\n        \n- **Responses**\n    \n    - **200 OK** – `{ success: true, token: \"\" }`\n        \n    - **401 Unauthorized** – Invalid credentials"
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Created (201) or exists (401)\", () => {",
+									"  pm.expect([201,401]).to.include(pm.response.code);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Josh Oluwa\",\n  \"email\": \"josholuwa@gmail.com\",\n  \"password\": \"{{password}}\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/user/register",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"register"
+							]
+						},
+						"description": "Registers a new user.\n\n- **Body (JSON)**\n    \n    - `name` (string) – User’s full name\n        \n    - `email` (string) – Valid, unique email\n        \n    - `password` (string) – Minimum 8 characters\n        \n- **Responses**\n    \n    - **201 Created** – `{ success: true, token:` \"\" `}`\n        \n    - **401 Unauthorized** – User already exists\n        \n    - **400 Bad Request** – Please enter a valid email"
+					},
+					"response": []
+				}
+			],
+			"description": "Manages authentication endpoints"
+		},
+		{
+			"name": "Food",
+			"item": [
+				{
+					"name": "Food List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/food/list",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"food",
+								"list"
+							]
+						},
+						"description": "Fetches all menu items / Food list\n\n- **Responses**\n    \n    - **200 OK**\n        \n\n```\n{\n    \"success\": true,\n    \"data\": [\n        {\n            \"_id\": \"688b2ccb6ddc54e38d842754\",\n            \"name\": \"ice\",\n            \"description\": \"vennila ice creame\",\n            \"price\": 20,\n            \"image\": \"1753951435095food_12.png\",\n            \"category\": \"Deserts\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"688b2df96ddc54e38d84275d\",\n            \"name\": \"pasts\",\n            \"description\": \"its very yummy\",\n            \"price\": 22,\n            \"image\": \"1753951737616menu_7.png\",\n            \"category\": \"Pasta\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"688b2f6c6ddc54e38d842761\",\n            \"name\": \"green salad\",\n            \"description\": \"green salad its very tase and health\",\n            \"price\": 0,\n            \"image\": \"1753952108293food_1.png\",\n            \"category\": \"Salad\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"688b2fe46ddc54e38d842769\",\n            \"name\": \"Spring Roll\",\n            \"description\": \"Spring rolls are light, crispy appetizers made by wrapping a mix of vegetables, and sometimes meat or shrimp, in a thin pastry sheet and frying or serving them fresh.\",\n            \"price\": 0,\n            \"image\": \"1753952228756food_6.png\",\n            \"category\": \"Rolls\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"688b30a36ddc54e38d84276f\",\n            \"name\": \"Mouse Chocolate\",\n            \"description\": \"Easy chocolate mousse is a rich, creamy dessert made with just a few simple ingredients like melted chocolate, whipped cream, and sometimes eggs or sugar\",\n            \"price\": 0,\n            \"image\": \"1753952419802food_17.png\",\n            \"category\": \"Deserts\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"688b31166ddc54e38d842777\",\n            \"name\": \"Mango Dessert\",\n            \"description\": \"A sweet and refreshing dessert made with ripe mangoes, often combined with cream, condensed milk, or jelly, perfect for hot days.\\r\\n\\r\\n\",\n            \"price\": 0,\n            \"image\": \"1753952534295food_20.png\",\n            \"category\": \"Deserts\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"688b31936ddc54e38d84277d\",\n            \"name\": \"blueberry cake\",\n            \"description\": \"A sweet and refreshing dessert made with ripe blue berry, often combined with cream, condensed milk, or jelly, perfect for hot days.\\r\\n\\r\\n\",\n            \"price\": 0,\n            \"image\": \"1753952659188food_19.png\",\n            \"category\": \"Cake\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"688b32316ddc54e38d842781\",\n            \"name\": \"Chicken Salad\",\n            \"description\": \"\\r\\nChicken salad is a hearty and flavorful dish made with cooked, shredded or diced chicken mixed with fresh vegetables like lettuce, cucumber, and tomatoes.\",\n            \"price\": 0,\n            \"image\": \"1753952817439food_4.png\",\n            \"category\": \"Salad\",\n            \"__v\": 0\n        }\n    ]\n}\n\n ```"
+					},
+					"response": []
+				}
+			],
+			"description": "Includes endpoint(s) for getting food list/menu items"
+		},
+		{
+			"name": "Cart",
+			"item": [
+				{
+					"name": "Get My Cart",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/cart/get",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"cart",
+								"get"
+							]
+						},
+						"description": "Returns all Ids of all items added to cart and their corresponding quantities\n\n- **Responses**\n    \n    - **200 OK**\n        \n\n```\n{\n    \"success\": true,\n    \"cartData\": {\n        \"688b2ccb6ddc54e38d842754\": 2\n    }\n}\n\n ```"
+					},
+					"response": []
+				},
+				{
+					"name": "Add To Cart",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4OGNmY2I4ODQyMDNhOGJlYjZiYmM5YiIsImlhdCI6MTc1NDA3Mjk0MH0.RgzSHAHBPAQNKZBrMrw8mh_j6dV-D11xqT41UElPqzQ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"itemId\": \"688b2ccb6ddc54e38d842754\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/cart/add",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"cart",
+								"add"
+							]
+						},
+						"description": "This endpoint adds itemsto the user's cart\n\n- **Responses**\n    \n    - **200 OK**\n        \n\n```\n{\n    \"itemId\": \"688b2df96ddc54e38d84275d\"\n}\n\n ```"
+					},
+					"response": []
+				},
+				{
+					"name": "Remove From Cart",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4OGNmY2I4ODQyMDNhOGJlYjZiYmM5YiIsImlhdCI6MTc1NDA3Mjk0MH0.RgzSHAHBPAQNKZBrMrw8mh_j6dV-D11xqT41UElPqzQ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"itemId\": \"688b2ccb6ddc54e38d842754\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/cart/remove",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"cart",
+								"remove"
+							]
+						},
+						"description": "This endpoint removes item from the user's cart\n\n- **Responses**\n    \n    - **200 OK**\n        \n\n```\n{\n    \"itemId\": \"688b2df96ddc54e38d84275d\"\n}\n\n ```"
+					},
+					"response": []
+				}
+			],
+			"description": "Returns the authenticated user’s cart"
+		},
+		{
+			"name": "Order",
+			"item": [
+				{
+					"name": "Get Orders",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4OGNmY2I4ODQyMDNhOGJlYjZiYmM5YiIsImlhdCI6MTc1NDA3Mjk0MH0.RgzSHAHBPAQNKZBrMrw8mh_j6dV-D11xqT41UElPqzQ",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/order/userorders",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"order",
+								"userorders"
+							]
+						},
+						"description": "Lists all orders for the authenticated user.\n\n- **Responses**\n    \n    - **200 OK**\n        \n\n```\n{\n    \"success\": true,\n    \"data\": [\n        {\n            \"_id\": \"688d21f270d496f04a89e216\",\n            \"userId\": \"688cfcb884203a8beb6bbc9b\",\n            \"items\": [\n                {\n                    \"_id\": \"688b2ccb6ddc54e38d842754\",\n                    \"name\": \"ice\",\n                    \"description\": \"vennila ice creame\",\n                    \"price\": 20,\n                    \"image\": \"1753951435095food_12.png\",\n                    \"category\": \"Deserts\",\n                    \"__v\": 0,\n                    \"quantity\": 13\n                },\n                {\n                    \"_id\": \"688b2df96ddc54e38d84275d\",\n                    \"name\": \"pasts\",\n                    \"description\": \"its very yummy\",\n                    \"price\": 22,\n                    \"image\": \"1753951737616menu_7.png\",\n                    \"category\": \"Pasta\",\n                    \"__v\": 0,\n                    \"quantity\": 9\n                },\n                {\n                    \"_id\": \"688b2f6c6ddc54e38d842761\",\n                    \"name\": \"green salad\",\n                    \"description\": \"green salad its very tase and health\",\n                    \"price\": 0,\n                    \"image\": \"1753952108293food_1.png\",\n                    \"category\": \"Salad\",\n                    \"__v\": 0,\n                    \"quantity\": 3\n                }\n            ],\n            \"amount\": 460,\n            \"address\": {\n                \"firstName\": \"Ebenezer\",\n                \"lastName\": \"Igbinoba\",\n                \"email\": \"igbinobaebenezer@gmail.com\",\n                \"street\": \"35 Ire-akari Street Agiliti Mile 12 Ketu\",\n                \"city\": \"Lagos\",\n                \"state\": \"Lagos\",\n                \"zipcode\": \"100001\",\n                \"country\": \"Nigeria\",\n                \"phone\": \"08182320479\"\n            },\n            \"status\": \"Food Processing\",\n            \"date\": \"2025-08-01T19:26:14.578Z\",\n            \"payment\": false,\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"688d34de70d496f04a89e275\",\n            \"userId\": \"688cfcb884203a8beb6bbc9b\",\n            \"items\": [\n                {\n                    \"_id\": \"688b2df96ddc54e38d84275d\",\n                    \"name\": \"pasts\",\n                    \"description\": \"its very yummy\",\n                    \"price\": 22,\n                    \"image\": \"1753951737616menu_7.png\",\n                    \"category\": \"Pasta\",\n                    \"__v\": 0,\n                    \"quantity\": 1\n                },\n                {\n                    \"_id\": \"688b2f6c6ddc54e38d842761\",\n                    \"name\": \"green salad\",\n                    \"description\": \"green salad its very tase and health\",\n                    \"price\": 0,\n                    \"image\": \"1753952108293food_1.png\",\n                    \"category\": \"Salad\",\n                    \"__v\": 0,\n                    \"quantity\": 2\n                }\n            ],\n            \"amount\": 24,\n            \"address\": {\n                \"firstName\": \"Ebenezer\",\n                \"lastName\": \"Igbinoba\",\n                \"email\": \"igbinobaebenezer@gmail.com\",\n                \"street\": \"35 Ire-akari Street Agiliti Mile 12 Ketu\",\n                \"city\": \"Lagos\",\n                \"state\": \"Lagos\",\n                \"zipcode\": \"100001\",\n                \"country\": \"Nigeria\",\n                \"phone\": \"08182320479\"\n            },\n            \"status\": \"Food Processing\",\n            \"date\": \"2025-08-01T19:26:14.578Z\",\n            \"payment\": false,\n            \"__v\": 0\n        }\n    ]\n}\n\n ```"
+					},
+					"response": []
+				}
+			],
+			"description": "Includes all endpoints regarding orders for the authenticated users"
+		}
+	]
+}
