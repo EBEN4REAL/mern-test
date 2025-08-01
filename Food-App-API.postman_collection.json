@@ -138,13 +138,19 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "{{token}}",
+									"value": "",
 									"type": "string"
 								}
 							]
 						},
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4OGNmY2I4ODQyMDNhOGJlYjZiYmM5YiIsImlhdCI6MTc1NDA3Mjk0MH0.RgzSHAHBPAQNKZBrMrw8mh_j6dV-D11xqT41UElPqzQ",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "{{baseUrl}}/api/cart/get",
 							"host": [
