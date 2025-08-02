@@ -6,6 +6,10 @@ A simple **MERN** stack application that serves a menu of dishes, allows user re
 
 https://www.loom.com/share/5ca5af1ed3a94768a2ddcaeb265dd58d?sid=38e3bdf8-2127-4d51-b763-a9610db81432
 
+## API DOCUMETATION
+
+The postman API collection file can be in the root directory of this project
+
 ---
 
 ## 📝 Table of Contents
